@@ -217,7 +217,20 @@
     z-index: 0;
   }
   .frond { position: absolute; color: var(--leaf); }
-  .frond svg { display: block; width: 100%; height: auto; }
+  .frond svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* pivot at the stem base, the only place a frond can actually bend */
+    transform-origin: 50% 100%;
+    animation: frond-sway 11s ease-in-out infinite;
+  }
+  .f3 svg { animation-duration: 14s; animation-delay: -4s; }
+
+  @keyframes frond-sway {
+    0%, 100% { transform: rotate(0deg); }
+    50%      { transform: rotate(1.7deg); }
+  }
 
   /* Only the top pair. The clip below brings its own foliage, and stacking the
      flat fronds over the photographed ones just reads as a doubled motif. */
@@ -278,6 +291,16 @@
     align-items: flex-end;
     height: var(--sky-h);
     pointer-events: none;
+    /* The slices cannot move independently — any shift opens a gap at a seam.
+       So the whole band breathes as one, anchored to the road so the ground
+       never floats. Slow enough to feel like a camera, not an effect. */
+    transform-origin: 50% 100%;
+    animation: skyline-breathe 24s ease-in-out infinite;
+  }
+
+  @keyframes skyline-breathe {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.022); }
   }
   .skyline img,
   .skyline .sky-mid {
@@ -669,6 +692,8 @@
   .reveal.in { opacity: 1; transform: none; }
 
   @media (prefers-reduced-motion: reduce) {
+    .skyline { animation: none; }
+    .frond svg { animation: none; }
     .reveal { opacity: 1; transform: none; transition: none; }
     .bar { transform: scaleX(1); transition: none; }
     .bar > * { opacity: 1; transition: none; }

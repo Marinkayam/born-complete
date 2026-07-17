@@ -303,104 +303,104 @@
 
   var TOPICS = [
     {
-      q: "Does she actually write code?",
+      q: "Do you actually write code?",
       keys: ["code", "coding", "dev", "engineer", "react", "typescript", "git", "ship", "build"],
-      line: "Yes — and not as a party trick. The handoff gap is where design quietly dies, so she closed it.",
+      line: "Yes — and not as a party trick. The handoff gap is where design quietly dies, so I closed it.",
       cards: [
-        { badge: "Daily", cls: "now", title: "Design-in-code",
-          body: "TypeScript-aware UI, React design systems, Git workflows. Design decisions land as production components, not as a spec someone else interprets.",
+        { badge: "Daily", cls: "now", title: "I work in the repo",
+          body: "TypeScript-aware UI, React design systems, Git workflows. My decisions land as production components, not as a spec someone else has to interpret.",
           to: "#built", cta: "See the stack" },
-        { badge: "Monto · now", cls: "now", title: "The system is the infrastructure",
-          body: "Shared components, states and tokens running across both Current Gen and Next Gen — not a Figma library that drifts from what shipped.",
+        { badge: "Monto · now", cls: "now", title: "The system is infrastructure",
+          body: "I own shared components, states and tokens running across both Current Gen and Next Gen — not a Figma library that drifts from what shipped.",
           to: "#built", cta: "Built as one" },
         { badge: "This page", cls: "long", title: "Including this one",
-          body: "Hand-built, no framework, no page builder. The career graph below is drawn from data, not screenshotted.",
+          body: "I hand-built it. No framework, no page builder. The career graph below is drawn from data, not screenshotted.",
           to: "#graph", cta: "Open the graph" },
         { badge: "2008 →", cls: "past", title: "It predates the trend",
-          body: "Design and code have run as one track since the Haaretz infographics desk. AI didn't start this; it sped it up.",
-          to: "#complete", cta: "Why it's not retrofitted" }
+          body: "Design and code have run as one track for me since the Haaretz infographics desk. AI didn't start this; it sped it up.",
+          to: "#complete", cta: "Why I'm not retrofitted" }
       ]
     },
     {
-      q: "Show me the design system work",
+      q: "Show me your design system work",
       keys: ["design system", "system", "tokens", "component", "library", "figma"],
-      line: "Owned end to end at Monto, as production infrastructure rather than a documentation exercise.",
+      line: "I own it end to end at Monto, as production infrastructure rather than a documentation exercise.",
       cards: [
         { badge: "Monto · now", cls: "now", title: "One source of truth",
-          body: "Components, states and tokens shared across two product generations at once — the hard version, where old and new have to agree.",
+          body: "Components, states and tokens shared across two product generations at once — the hard version, where the old and the new have to agree.",
           to: "#built", cta: "Built as one" },
         { badge: "Figma → prod", cls: "now", title: "No drift",
-          body: "The tokens in the file are the tokens in the repo. When they can't drift apart, nobody has to police them.",
+          body: "The tokens in my file are the tokens in the repo. When they can't drift apart, nobody has to police them.",
           to: "#built", cta: "See the pillars" },
         { badge: "ORBS · 7 yrs", cls: "past", title: "Across a whole portfolio",
-          body: "As Head of Design: one system spanning SaaS and B2B/B2C products, including dTwap and Ton Verifier.",
+          body: "As Head of Design I ran one system spanning SaaS and B2B/B2C products, including dTwap and Ton Verifier.",
           to: "#graph", cta: "Find it on the graph" },
         { badge: "Since 2008", cls: "long", title: "Systems over screens",
           body: "The job was never the artifact. At Haaretz the chart was the easy part — the structure underneath it was the work.",
-          to: "#spots", cta: "The spots" }
+          to: "#spots", cta: "My spots" }
       ]
     },
     {
-      q: "What has she shipped 0 → 1?",
+      q: "What have you shipped 0 → 1?",
       keys: ["0", "zero", "one", "ship", "shipped", "launch", "product", "defi", "orbs", "monto"],
       line: "Four times over, and each time while the product rules were still being written.",
       cards: [
         { badge: "Monto · now", cls: "now", title: "Next-Gen financial platform",
-          body: "UX and UI from nothing: system architecture and core flows defined while the product rules were still moving.",
+          body: "UX and UI from nothing: I defined the system architecture and core flows while the product rules were still moving.",
           to: "#built", cta: "Built for giants" },
         { badge: "ORBS", cls: "past", title: "dTwap · Ton Verifier · DeFi",
-          body: "Shipped multiple products end to end — ideation through launch — as Head of Design.",
+          body: "I shipped multiple products end to end — ideation through launch — as Head of Design.",
           to: "#graph", cta: "See the span" },
         { badge: "Complex domains", cls: "now", title: "Invoices, portals, exceptions",
-          body: "Operational messes turned into deterministic, easy-to-act-on flows. Smart Connections, tasks, the lot.",
+          body: "I turn operational messes into deterministic, easy-to-act-on flows. Smart Connections, tasks, the lot.",
           to: "#built", cta: "The full stack" },
         { badge: "2013 – 2019", cls: "past", title: "Investor-ready from scratch",
-          body: "At a private investment fund: product concepts and prototypes built to carry a fundraise, not just a review.",
+          body: "At a private investment fund I built product concepts and prototypes meant to carry a fundraise, not just a review.",
           to: "#graph", cta: "Open the graph" }
       ]
     },
     {
-      q: "How does she use AI?",
+      q: "How do you use AI?",
       keys: ["ai", "llm", "gpt", "claude", "cursor", "genai", "gen ai", "teach", "lecture"],
-      line: "As part of the method, not bolted onto it. And she teaches it while she does it.",
+      line: "As part of the method, not bolted onto it. And I teach it while I do it.",
       cards: [
         { badge: "Monto · now", cls: "now", title: "Inside the process",
-          body: "Exploring flows, generating and validating states, stress-testing edge cases. LLMs scale the decisions and keep the system consistent.",
+          body: "Exploring flows, generating and validating states, stress-testing edge cases. LLMs scale my decisions and keep the system consistent.",
           to: "#built", cta: "AI-native" },
-        { badge: "Lecturer · now", cls: "now", title: "Teaching it",
+        { badge: "Lecturer · now", cls: "now", title: "I teach it",
           body: "Gen AI and Creative Thinking at the College of Management — prompt engineering, multi-modal tools, AI-assisted storytelling.",
           to: "#graph", cta: "Second row of the graph" },
         { badge: "Toolkit", cls: "long", title: "Claude Code · Cursor · ChatGPT",
-          body: "Working tools, not a slide. They're how the iteration loop got tight enough to matter.",
+          body: "Working tools, not a slide. They're how my iteration loop got tight enough to matter.",
           to: "#built", cta: "See the stack" },
         { badge: "Not retrofitted", cls: "past", title: "The method came first",
-          body: "The way she works predates the models by fifteen years. When generative AI arrived it didn't replace the method — it ran on it.",
+          body: "The way I work predates the models by fifteen years. When generative AI arrived it didn't replace my method — it ran on it.",
           to: "#complete", cta: "Born complete" }
       ]
     },
     {
-      q: "Why should we hire her?",
+      q: "Why should we hire you?",
       keys: ["why", "hire", "fit", "oak", "leopard", "spots", "reason"],
       line: "Because you wrote that a leopard can't change its spots, and you meant it as a warning. Read it the other way.",
       cards: [
         { badge: "Since 2008", cls: "long", title: "Systems over screens",
           body: "Seventeen years of the same job at rising stakes: take what nobody can see clearly yet and give it a structure people can act on.",
-          to: "#spots", cta: "The spots" },
+          to: "#spots", cta: "My spots" },
         { badge: "Since 2003", cls: "long", title: "Trust is the feature",
           body: "DeFi, an investment fund, a payments platform. When the thing on screen moves money, the interface is the risk control.",
           to: "#spots", cta: "Why it matters here" },
         { badge: "The offer", cls: "now", title: "Prove it on your worst flow",
-          body: "Send the one with the exceptions nobody wants to own. A working prototype comes back in code, not a deck. No obligation to hire.",
-          to: "#promise", cta: "The promise" },
+          body: "Send me the one with the exceptions nobody wants to own. I'll come back with a working prototype in code, not a deck. No obligation to hire me.",
+          to: "#promise", cta: "My promise" },
         { badge: "Tel Aviv", cls: "now", title: "Ready when you are",
-          body: "Senior Product Designer, hybrid, on your stack from the first morning — whatever it turns out to be.",
+          body: "Senior Product Designer, hybrid, on your stack from my first morning — whatever it turns out to be.",
           to: "#promise", cta: "Connect any" }
       ]
     }
   ];
 
   var FALLBACK = {
-    line: "That one isn't indexed — this is a scripted demo, so it only knows what it was told. Here's the short version instead.",
+    line: "That one isn't indexed — this is a scripted demo, so it only knows what I told it. Here's the short version instead.",
     cards: TOPICS[4].cards
   };
 
