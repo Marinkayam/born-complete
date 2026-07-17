@@ -1164,48 +1164,50 @@
   50%      { transform: rotate(var(--r)) translateY(-9px); }
 }
 
-/* A constellation cannot survive a phone — but the flowers can, and they are the
-   point. So the ring gives up its positions and the same twelve become cards.
-   Only the layout is dropped, never the art. */
-@media (max-width: 1080px) {
+/* The scattered ring needs room to breathe; below ~860px the flowers start
+   landing on the headline. There it gives up the scatter — but never the boxes,
+   which were the wrong instinct. The same twelve stay as bare flowers on the
+   cream, a bouquet laid out in a grid, label under each. Art intact, chrome gone. */
+@media (max-width: 860px) {
   .constellation { display: block; min-height: 0; padding-block: 0; }
   .constellation-core { max-width: 62ch; margin-inline: auto; }
 
   .constellation-ring {
     position: static;
     display: grid;
-    /* 220px is the narrowest a card can be before an uppercase label starts
-       running out the side of it next to a 46px flower — measured, not guessed. */
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 0.75rem;
-    margin-top: clamp(2rem, 5vw, 3rem);
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.75rem, 6vw, 2.75rem) 1rem;
+    margin-top: clamp(2.5rem, 6vw, 3.5rem);
   }
   .tile {
     position: static;
     transform: none;
     width: auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.85rem;
-    text-align: left;
-    background: var(--cream-2);
-    border: 1px solid var(--rule-solid);
-    border-radius: 14px;
-    padding: 0.7rem 0.9rem;
+    text-align: center;
+    background: none;
+    border: 0;
+    padding: 0;
   }
   .tile img {
-    flex: 0 0 auto;
-    width: 46px;
-    margin-inline: 0;
-    filter: drop-shadow(0 3px 5px rgba(5, 41, 43, 0.16));
+    width: clamp(64px, 17vw, 96px);
+    margin-inline: auto;
+    filter: drop-shadow(0 6px 10px rgba(5, 41, 43, 0.14));
   }
   .tile span {
-    margin-top: 0;
+    margin-top: 0.6rem;
     min-width: 0;
-    font-size: 0.72rem;
-    letter-spacing: 0.05em;
-    color: var(--ink);
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-2);
   }
+}
+
+/* On a phone three columns crush the longer labels — drop to two. */
+@media (max-width: 560px) {
+  .constellation-ring { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (prefers-reduced-motion: reduce) {
