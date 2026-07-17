@@ -1,0 +1,9 @@
+{
+  "name": "born-complete",
+  "private": true,
+  "type": "module",
+  "description": "Marina Rudinsky Kaplan — application for Senior Product Designer at Oak.",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.112.1"
+  }
+}

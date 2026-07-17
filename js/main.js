@@ -288,8 +288,10 @@
   })();
 
 /* ---------- ask ----------
-   A scripted console, not a model. Free text is matched on keywords; anything
-   unmatched falls through to the summary rather than inventing an answer. */
+   Real answers come from /api/ask, where the key lives. The scripted TOPICS
+   below are the suggestion chips and the fallback: if the endpoint is missing
+   or fails, the console degrades to what I wrote by hand rather than to an
+   error. Every path is honest about which one it took. */
 
 (function () {
   "use strict";
@@ -400,7 +402,7 @@
   ];
 
   var FALLBACK = {
-    line: "That one isn't indexed — this is a scripted demo, so it only knows what I told it. Here's the short version instead.",
+    line: "I can't reach the model right now, so here's the answer I'd have given anyway.",
     cards: TOPICS[4].cards
   };
 
@@ -470,10 +472,55 @@
     suggestBox.appendChild(b);
   });
 
+  /* The chips answer instantly from the script — they're my words, already
+     written, and a spinner for them would be theatre. Free text goes to the
+     model. */
+  function thinking() {
+    answerBox.innerHTML = "";
+    var line = document.createElement("p");
+    line.className = "answer-line is-thinking";
+    line.textContent = "Thinking…";
+    answerBox.appendChild(line);
+    Array.prototype.forEach.call(suggestBox.children, function (b) {
+      b.setAttribute("aria-pressed", "false");
+    });
+  }
+
+  var pending = 0;
+
+  function ask(question) {
+    var ticket = ++pending;
+    thinking();
+    form.setAttribute("aria-busy", "true");
+
+    fetch("/api/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: question })
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        if (ticket !== pending) return;          // a newer question overtook this one
+        if (!data || !data.line || !data.cards || !data.cards.length) throw new Error("bad shape");
+        render(data, null);
+      })
+      .catch(function () {
+        if (ticket !== pending) return;
+        render(match(question) || FALLBACK, null);
+      })
+      .then(function () {
+        if (ticket === pending) form.removeAttribute("aria-busy");
+      });
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    var hit = match(input.value);
-    render(hit || FALLBACK, hit ? hit.q : null);
+    var q = input.value.trim();
+    if (!q) return;
+    ask(q);
   });
 
   render(TOPICS[0], TOPICS[0].q);

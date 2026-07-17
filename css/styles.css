@@ -970,6 +970,9 @@
   text-align: center;
 }
 
+.answer-line.is-thinking { color: var(--muted); animation: pulse 1.4s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: 0.45; } }
+
 .answer-cards {
   display: grid;
   gap: 0.75rem;
@@ -1049,6 +1052,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .acard { opacity: 1; transform: none; animation: none; }
+  .answer-line.is-thinking { animation: none; }
 }
 
 /* ---------- touch ----------
