@@ -164,7 +164,8 @@
 
   .nav-links {
     display: flex;
-    gap: 1.75rem;
+    flex: 0 1 auto;
+    gap: 1.5rem;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -178,6 +179,10 @@
     color: var(--ink);
     opacity: 0.75;
     transition: opacity 0.18s;
+    /* A label should never break mid-word. Above ~1500 --pad locks at its 5rem
+       ceiling and the content box actually gets *narrower* than at 1440, which is
+       what tipped these over. */
+    white-space: nowrap;
   }
   .nav-links a:hover { opacity: 1; color: var(--teal); }
 
@@ -766,7 +771,9 @@
 
   /* The graph keeps its columns at every width — it scrolls sideways inside
      .graph-scroll rather than collapsing, so the axis offset stays true. */
-  @media (max-width: 860px) {
+  /* The bar needs 902px of the 1240 wrap. Below ~1060 that stops fitting, so the
+     links go rather than squeeze — measured, not guessed. */
+  @media (max-width: 1060px) {
     .nav-links { display: none; }
   }
 
