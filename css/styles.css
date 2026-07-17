@@ -441,6 +441,29 @@
     max-width: 34ch;
   }
 
+  /* ---------- the fold ----------
+     The thesis, made literal: one square of paper. The desk is the front face,
+     a flower the back. main.js scrubs a rotateX by scroll position, so passing
+     through the section folds the square over — same paper, folded the other way.
+     rotateX lives on .fold so it never fights the parallax translate on .paper. */
+  .paper-studio { perspective: 1400px; }
+  .fold {
+    position: relative;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .fold-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .fold-front { position: relative; }          /* sizes the box */
+  .fold-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotateX(180deg);
+  }
+  .fold-back img { width: 60%; }               /* near the flower's native size, centred */
+
   .paper-studio  { max-width: 400px; }
   .paper-leopard { max-width: 400px; }
   .paper-ibex    { max-width: 290px; }

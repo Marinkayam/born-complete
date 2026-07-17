@@ -237,6 +237,40 @@
       queueDrift();
     }
 
+    /* ---------- the fold ----------
+       Scrub a rotateX by the figure's travel through the viewport: desk while it
+       enters, edge-on at the midpoint, flower by the time it reaches reading
+       height. A slight scale dip sells the paper bending rather than a rigid flip. */
+    var fold = document.querySelector("[data-fold]");
+    if (fold) {
+      var foldFig = fold.closest(".paper");   // measured, not the rotating .fold
+      var setFold = function (p) {
+        var dip = 1 - 0.10 * Math.sin(p * Math.PI);
+        fold.style.transform = "rotateX(" + (p * 180).toFixed(2) + "deg) scale(" + dip.toFixed(3) + ")";
+      };
+      if (reduced) {
+        setFold(0);
+      } else {
+        var fTick = false;
+        var foldDrift = function () {
+          fTick = false;
+          var vh = window.innerHeight;
+          var box = foldFig.getBoundingClientRect();
+          var c = box.top + box.height / 2;
+          var p = (vh * 0.70 - c) / (vh * 0.70 - vh * 0.35);
+          setFold(Math.max(0, Math.min(1, p)));
+        };
+        var queueFold = function () {
+          if (fTick) return;
+          fTick = true;
+          window.requestAnimationFrame(foldDrift);
+        };
+        window.addEventListener("scroll", queueFold, { passive: true });
+        window.addEventListener("resize", queueFold);
+        queueFold();
+      }
+    }
+
     /* ---------- reveal ---------- */
 
     var targets = document.querySelectorAll(".reveal");
