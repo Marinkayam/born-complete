@@ -1070,3 +1070,105 @@
   .nav .btn { padding-inline: 1rem; font-size: 0.68rem; }
 }
 
+
+/* ---------- skills ----------
+   Oak scatters folded tiles around a centred claim. Same furniture here, but the
+   tiles carry the argument rather than decorate it: one square, one fold, twelve
+   papers. The ring is decorative — the real list is .skills-list, which is what
+   a screen reader and a narrow screen both get. */
+
+.constellation {
+  position: relative;
+  /* tall enough that the ring has clear bands above and below the core rather
+     than landing on it */
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 2rem;
+}
+
+.constellation-core {
+  position: relative;
+  z-index: 1;
+  /* 42ch broke the headline over four lines and made the core so tall it filled
+     the ring's space */
+  max-width: 54ch;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.constellation-core h2 { text-wrap: balance; }
+.constellation-core .lede { margin-inline: auto; }
+
+.constellation-ring { position: absolute; inset: 0; }
+
+.tile {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: clamp(66px, 7vw, 104px);
+  margin: 0;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: rotate(var(--r));
+  filter: drop-shadow(0 8px 12px rgba(5, 41, 43, 0.14));
+  animation: tile-hover 7s ease-in-out infinite;
+  animation-delay: var(--d);
+}
+.tile figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--ink-2);
+  text-wrap: balance;
+}
+
+/* ~9px of travel on a ~90px tile: present, not busy. Staggered so the ring
+   never pulses in unison. */
+@keyframes tile-hover {
+  0%, 100% { transform: rotate(var(--r)) translateY(0); }
+  50%      { transform: rotate(var(--r)) translateY(-9px); }
+}
+
+/* The ring is the decorative version; below it stops fitting and this is the
+   one that has to work. */
+.skills-list { display: none; }
+
+@media (max-width: 1080px) {
+  .constellation { display: block; min-height: 0; padding-block: 0; }
+  .constellation-core { max-width: 62ch; margin-inline: auto; }
+  .constellation-ring { display: none; }
+
+  .skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+    list-style: none;
+    margin: clamp(2rem, 5vw, 3rem) 0 0;
+    padding: 0;
+  }
+  .skills-list li {
+    background: var(--cream-2);
+    border: 1px solid var(--rule-solid);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile img { animation: none; }
+}
