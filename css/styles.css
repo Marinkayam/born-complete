@@ -223,13 +223,13 @@
     height: auto;
     /* pivot at the stem base, the only place a frond can actually bend */
     transform-origin: 50% 100%;
-    animation: frond-sway 11s ease-in-out infinite;
+    animation: frond-sway 7s ease-in-out infinite;
   }
-  .f3 svg { animation-duration: 14s; animation-delay: -4s; }
+  .f3 svg { animation-duration: 9s; animation-delay: -3s; }
 
   @keyframes frond-sway {
     0%, 100% { transform: rotate(0deg); }
-    50%      { transform: rotate(1.7deg); }
+    50%      { transform: rotate(3.4deg); }
   }
 
   /* Only the top pair. The clip below brings its own foliage, and stacking the
@@ -295,12 +295,12 @@
        So the whole band breathes as one, anchored to the road so the ground
        never floats. Slow enough to feel like a camera, not an effect. */
     transform-origin: 50% 100%;
-    animation: skyline-breathe 24s ease-in-out infinite;
+    animation: skyline-breathe 16s ease-in-out infinite;
   }
 
   @keyframes skyline-breathe {
     0%, 100% { transform: scale(1); }
-    50%      { transform: scale(1.022); }
+    50%      { transform: scale(1.035); }
   }
   .skyline .cluster {
     position: relative;
@@ -324,29 +324,33 @@
   }
   .giraffe {
     transform-origin: 50% 100%;
-    animation: giraffe-graze 9s ease-in-out infinite;
+    animation: giraffe-graze 6s ease-in-out infinite;
   }
   .zebra {
     transform-origin: 50% 100%;
-    animation: zebra-shift 7s ease-in-out infinite;
+    animation: zebra-shift 5s ease-in-out infinite;
   }
   .toucan {
     transform-origin: 40% 100%;
-    animation: toucan-bob 5s ease-in-out infinite;
+    animation: toucan-bob 3.5s ease-in-out infinite;
   }
 
+  /* Amplitudes are worked back from how far the top of each animal actually
+     travels, not from how the number reads. The giraffe's head sits ~156px above
+     its feet, so 3.7deg swings it ~10px — enough to catch the eye inside a
+     couple of seconds, which is what "gentle" has to mean to exist at all. */
   @keyframes giraffe-graze {
     0%, 100% { transform: rotate(0deg); }
-    50%      { transform: rotate(-1.1deg); }
+    50%      { transform: rotate(-3.7deg); }
   }
   @keyframes zebra-shift {
     0%, 100% { transform: rotate(0deg) translateY(0); }
-    50%      { transform: rotate(0.9deg) translateY(-1.5px); }
+    50%      { transform: rotate(2.6deg) translateY(-4px); }
   }
   @keyframes toucan-bob {
     0%, 100% { transform: rotate(0deg) translateY(0); }
-    35%      { transform: rotate(-3deg) translateY(-2.5px); }
-    70%      { transform: rotate(2deg) translateY(0); }
+    35%      { transform: rotate(-7.5deg) translateY(-5px); }
+    70%      { transform: rotate(4deg) translateY(-1px); }
   }
   .skyline .sky-mid {
     flex: 1 1 auto;
