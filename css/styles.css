@@ -1073,8 +1073,9 @@
 
 /* ---------- skills ----------
    Oak scatters folded tiles around a centred claim. Same furniture here, but the
-   tiles carry the argument rather than decorate it: one square, one fold, twelve
-   papers. The ring is decorative — the real list is .skills-list, which is what
+   tiles carry the argument rather than decorate it: twelve different folds out of
+   one square, which is what origami is and what the page has been saying since
+   the hero. The ring is decorative — the real list is .skills-list, which is what
    a screen reader and a narrow screen both get. */
 
 .constellation {
@@ -1108,7 +1109,7 @@
   position: absolute;
   left: var(--x);
   top: var(--y);
-  width: clamp(66px, 7vw, 104px);
+  width: clamp(72px, 7.6vw, 112px);
   margin: 0;
   transform: translate(-50%, -50%);
   text-align: center;
