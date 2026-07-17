@@ -554,6 +554,18 @@
     overflow-x: auto;
     margin-top: clamp(2.5rem, 5vw, 3.5rem);
     padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* On a phone the graph is wider than the screen. Without a hint there is
+     nothing to say so — the rows just look cropped. */
+  .graph-hint {
+    display: none;
+    margin-top: 0.75rem;
+    font-size: 0.74rem;
+    color: var(--muted);
+  }
+  @media (max-width: 860px) {
+    .graph-hint { display: block; }
   }
   .graph { min-width: 760px; }
 
@@ -755,22 +767,34 @@
   }
 
   @media (max-width: 900px) {
-    .hero { padding-bottom: 0; }
-    .hero .wrap { transform: none; }
-    .skyline { position: static; margin-top: clamp(2rem, 5vw, 3rem); }
+    /* The skyline sits first in the source so it paints behind the headline.
+       Once it goes static that source order becomes reading order and the page
+       opens on the picture instead of the claim — so order it back. */
+    .hero { display: flex; flex-direction: column; padding-bottom: 0; }
+    .hero .wrap { order: 1; transform: none; }
+    .skyline { order: 2; position: static; margin-top: clamp(2rem, 5vw, 3rem); }
+
+    /* Once the scene drops below the headline it no longer has to leave a gap
+       for it, so it can have the width. On the desktop side --sky-h is what
+       sets that gap, which is why this bump only lives down here.
+       It has to hang off :root — a bare declaration inside @media is invalid
+       and gets dropped without a word. */
+    :root { --sky-h: clamp(190px, 52vw, 400px); }
+  }
+
+  @media (max-width: 900px) {
+    /* On a wide hero the fronds frame the headline from the far corners. Once
+       the scene drops below the text they have nothing to frame and just cut
+       across the words — and the scene brings its own palms anyway. */
+    .foliage { display: none; }
   }
 
   @media (max-width: 560px) {
-    /* Two fronds are a frame; four are a hedge the headline has to fight. */
-    .f2, .f4 { display: none; }
-    .f1 { width: 116px; top: 2%; opacity: 0.5; }
-    .f3 { width: 128px; top: 1%; opacity: 0.5; }
-
     .nav-inner { gap: 0.75rem; }
-    .wordmark { font-size: 0.72rem; gap: 0.3rem; }
-    .nav .btn { padding: 0.6rem 0.9rem; font-size: 0.6rem; letter-spacing: 0.08em; }
+    .wordmark { font-size: 0.78rem; gap: 0.3rem; }
     .hero .lede { text-align: center; }
   }
+
 
 /* ---------- ask ----------
    Oak's own console, turned around: their product answers questions about your
@@ -1015,3 +1039,30 @@
 @media (prefers-reduced-motion: reduce) {
   .acard { opacity: 1; transform: none; animation: none; }
 }
+
+/* ---------- touch ----------
+   Everything below is about the hand, not the screen: 44px is the smallest
+   thing a thumb hits reliably, and type that reads at arm's length on a
+   desktop is squinting distance on a phone. */
+@media (hover: none), (max-width: 760px) {
+  .btn {
+    min-height: 44px;
+    padding-inline: 1.25rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+  .announce { padding-block: 0.9rem; }
+  .announce a { display: inline-block; padding-block: 0.35rem; }
+  .suggest { min-height: 44px; display: inline-flex; align-items: center; font-size: 0.85rem; }
+  .ask-send { width: 44px; height: 44px; font-size: 1.15rem; }
+  .ask-input { font-size: 16px; }  /* under 16px iOS zooms the whole page on focus */
+  .acard a { min-height: 44px; display: flex; align-items: center; font-size: 0.78rem; }
+  .acard-badge { font-size: 0.72rem; }
+  .ask-chip { font-size: 0.72rem; }
+  .spot .since { font-size: 0.74rem; }
+  .eyebrow { font-size: 0.76rem; }
+  .contact { font-size: 1rem; }
+  .contact a { min-height: 40px; display: flex; align-items: center; }
+  .nav .btn { padding-inline: 1rem; font-size: 0.68rem; }
+}
+
