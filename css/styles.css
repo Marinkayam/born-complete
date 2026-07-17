@@ -302,12 +302,52 @@
     0%, 100% { transform: scale(1); }
     50%      { transform: scale(1.022); }
   }
-  .skyline img,
+  .skyline .cluster {
+    position: relative;
+    flex: 0 0 auto;
+    height: 100%;
+  }
+  .skyline .plate,
   .skyline .sky-mid {
     display: block;
     height: 100%;
   }
-  .skyline img { width: auto; flex: 0 0 auto; }
+  .skyline .plate { width: auto; }
+
+  /* The animals are lifted off the plate so they can move. Each is placed as a
+     percentage of its own cluster, so it tracks the scenery at every size, and
+     pivots at its feet — paper animals rock, they don't drift. */
+  .skyline .beast {
+    position: absolute;
+    height: auto;
+    filter: drop-shadow(0 6px 8px rgba(5, 41, 43, 0.18));
+  }
+  .giraffe {
+    transform-origin: 50% 100%;
+    animation: giraffe-graze 9s ease-in-out infinite;
+  }
+  .zebra {
+    transform-origin: 50% 100%;
+    animation: zebra-shift 7s ease-in-out infinite;
+  }
+  .toucan {
+    transform-origin: 40% 100%;
+    animation: toucan-bob 5s ease-in-out infinite;
+  }
+
+  @keyframes giraffe-graze {
+    0%, 100% { transform: rotate(0deg); }
+    50%      { transform: rotate(-1.1deg); }
+  }
+  @keyframes zebra-shift {
+    0%, 100% { transform: rotate(0deg) translateY(0); }
+    50%      { transform: rotate(0.9deg) translateY(-1.5px); }
+  }
+  @keyframes toucan-bob {
+    0%, 100% { transform: rotate(0deg) translateY(0); }
+    35%      { transform: rotate(-3deg) translateY(-2.5px); }
+    70%      { transform: rotate(2deg) translateY(0); }
+  }
   .skyline .sky-mid {
     flex: 1 1 auto;
     min-width: 0;
@@ -693,6 +733,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .skyline { animation: none; }
+    .skyline .beast { animation: none; }
     .frond svg { animation: none; }
     .reveal { opacity: 1; transform: none; transition: none; }
     .bar { transform: scaleX(1); transition: none; }
