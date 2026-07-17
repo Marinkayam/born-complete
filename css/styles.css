@@ -1110,27 +1110,39 @@
 .constellation-core h2 { text-wrap: balance; }
 .constellation-core .lede { margin-inline: auto; }
 
-.constellation-ring { position: absolute; inset: 0; }
+.constellation-ring {
+  position: absolute;
+  inset: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
 .tile {
   position: absolute;
   left: var(--x);
   top: var(--y);
-  width: clamp(72px, 7.6vw, 112px);
+  /* The tile is sized for the longest label, not for the flower — otherwise a
+     word like ARCHITECTURE runs out the side of it once the viewport narrows
+     and the clamp starts biting. */
+  width: clamp(118px, 9vw, 138px);
   margin: 0;
   transform: translate(-50%, -50%);
   text-align: center;
 }
 .tile img {
   display: block;
-  width: 100%;
+  width: clamp(72px, 7.6vw, 112px);
+  max-width: 100%;
+  margin-inline: auto;
   height: auto;
   transform: rotate(var(--r));
   filter: drop-shadow(0 8px 12px rgba(5, 41, 43, 0.14));
   animation: tile-hover 7s ease-in-out infinite;
   animation-delay: var(--d);
 }
-.tile figcaption {
+.tile span {
+  display: block;
   margin-top: 0.6rem;
   font-size: 0.68rem;
   font-weight: 700;
@@ -1141,38 +1153,53 @@
   text-wrap: balance;
 }
 
-/* ~9px of travel on a ~90px tile: present, not busy. Staggered so the ring
+/* ~9px of travel on a ~90px flower: present, not busy. Staggered so the ring
    never pulses in unison. */
 @keyframes tile-hover {
   0%, 100% { transform: rotate(var(--r)) translateY(0); }
   50%      { transform: rotate(var(--r)) translateY(-9px); }
 }
 
-/* The ring is the decorative version; below it stops fitting and this is the
-   one that has to work. */
-.skills-list { display: none; }
-
+/* A constellation cannot survive a phone — but the flowers can, and they are the
+   point. So the ring gives up its positions and the same twelve become cards.
+   Only the layout is dropped, never the art. */
 @media (max-width: 1080px) {
   .constellation { display: block; min-height: 0; padding-block: 0; }
   .constellation-core { max-width: 62ch; margin-inline: auto; }
-  .constellation-ring { display: none; }
 
-  .skills-list {
+  .constellation-ring {
+    position: static;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 0.5rem;
-    list-style: none;
-    margin: clamp(2rem, 5vw, 3rem) 0 0;
-    padding: 0;
+    /* 220px is the narrowest a card can be before an uppercase label starts
+       running out the side of it next to a 46px flower — measured, not guessed. */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-top: clamp(2rem, 5vw, 3rem);
   }
-  .skills-list li {
+  .tile {
+    position: static;
+    transform: none;
+    width: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-align: left;
     background: var(--cream-2);
     border: 1px solid var(--rule-solid);
-    border-radius: 12px;
-    padding: 0.85rem 1rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
+    border-radius: 14px;
+    padding: 0.7rem 0.9rem;
+  }
+  .tile img {
+    flex: 0 0 auto;
+    width: 46px;
+    margin-inline: 0;
+    filter: drop-shadow(0 3px 5px rgba(5, 41, 43, 0.16));
+  }
+  .tile span {
+    margin-top: 0;
+    min-width: 0;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
     color: var(--ink);
   }
 }
